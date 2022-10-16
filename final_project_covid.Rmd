@@ -1,0 +1,97 @@
+---
+title: "COVID-19 Vaccination by Country as of 9/9/2022"
+author: "Alessia Kettlitz"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  datasetdate: "9/9/2022"
+---
+
+```{r, set-chunk-opts, echo = FALSE}
+
+library(knitr)
+
+#setting global chunk options
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+# Introduction
+
+## Data Set
+
+The data set used for this report is from Edouard Mathieu, Hannah Ritchie, Esteban Ortiz-Ospina, Max Roser, Joe Hasell, Cameron Appel, Charlie Giattino and Lucas Rodes-Guirao, from their published article ["A global database of COVID-19 vaccinations"](https://www.nature.com/articles/s41562-021-01122-8). The data set can be accessed from the [Our World in Data](https://ourworldindata.org/covid-vaccinations). The version of the data set downloaded is from `r params$datasetdate`. 
+
+The data set has most recent official numbers on COVID-19 vaccination numbers, as well as several other relevant variables. The data set has 218 countries, each date when a country's vaccination numbers were updated, total number of COVID-19 cases, the number of new COVID-19 cases, total deaths due to COVID-19, new deaths due to COVID-19, new and total tests, new vaccinations, total vaccinations, number of people fully vaccinated, and total boosters. These were found by combining multiple sources, such as the World Health Organization, Pan-American Health Organization, and country's ministry of health. 
+
+The data set also several other demographic characteristics including:
+
+* Population
+* Population Density
+* Median Age
+* % Aged 65 and Older
+* % Aged 70 and Older
+* GDP per Capita
+* % of the Population Living in Extreme Poverty
+* Death Rate of Cardiovascular Disease
+* Prevalence of Diabetes
+* % of Female Population who Smokes
+* % of Male Population who Smokes
+* Hospital Beds per Thousand People
+* Life Expectancy
+* Human Development Index
+
+The population estimates are based on the United Nations World Population Prospects, and the income groups are based on World Bank classification.
+
+## Analysis Objectives
+
+There are three main objectives for the analysis of this data set.
+
+1. To assess the global trends in vaccination rates over time
+2. To assess COVID-19 vaccination rates among the top 25 country's with the highest COVID-19 total cases
+3. To assess COVID-19 vaccination rates among the top 25 country's with the lowest COVID-19 total cases
+
+# Descriptive Analysis
+
+## Tabular Analysis
+
+The below table illustrates the characteristics of COVID-19 vaccination both globally and by continent. Europe, North America and South America have the highest number of people vaccinated per hundred, while Africa has the lowest number of people vaccinated per hundred. 
+
+```{r, load-in-data}
+
+here::i_am("final_project_covid.Rmd") #identifies root directory location
+data <- readRDS( #reading in R object for data
+  file = here::here("output/data_clean.rds")
+)
+
+```
+
+```{r, table1}
+#| fig.align = 'center',
+
+table_1 <- readRDS(
+  file = here::here("output/table_1.rds")
+)
+
+table_1
+
+```
+
+## Graphical Analysis
+
+The below bar chart illustrates the total number of people vaccinated per hundred people by continent and also globally. As seen from the table above, Europe, North America, and South America have the highest per capita rates of COVID-19 vaccination. On the other hand, Africa has a significantly lower per capita rate.
+
+```{r, barchart}
+#| fig.align = 'center',
+#| out.width = '600px'
+
+
+knitr::include_graphics(
+  here::here("output/barchart.png")
+)
+
+```
+
+
+
