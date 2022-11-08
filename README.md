@@ -1,8 +1,10 @@
 # INFO 550 Final Project - COVID-19 Around the World
 
+This project was created for the INFO 550 course. The data set is from "Our World in Data".
+
 ## How to Generate Final Report
 
-To generate the final report, either run the 03_render.R code from RStudio, or type "make" it the GitBash terminal.
+To generate the final report, either run the 03_render.R code from RStudio, or type "make" in the GitBash terminal while setting your working directory in the project directory.
 
 ## What Each Code Generates
 
