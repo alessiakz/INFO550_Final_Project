@@ -15,4 +15,4 @@ descriptive_analysis: output/table_1.rds output/barchart.png
 
 .PHONY: clean
 clean:
-	rm output/*.rds && rm output/*.png
+	rm output/*.rds && rm output/*.png && rm *.html

@@ -2,7 +2,7 @@
 here::i_am("code/02_chart.R")
 
 #making dataframe from the saved data object
-data <- readRDS(
+data_clean <- readRDS(
   file = here::here("output/data_clean.rds")
 )
 
