@@ -33,6 +33,6 @@ project_image: Dockerfile $(PROJECTFILES)
 	touch $@
 
 #rule to build the report automatically in our coontainer
-final_project/report.html: project_image
+final_project/final_project_covid.html: project_image
 	docker run -v "/$$(pwd)/final_project":/project/final_report project_image
 
