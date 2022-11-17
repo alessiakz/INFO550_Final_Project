@@ -30,7 +30,7 @@ The image is hosted on DockerHub at https://hub.docker.com/repository/docker/ale
 Type the command "docker build -t project_image ." to manually build the Docker image.
 You can also type the command "make project_image" to build the Docker image through the Makefile. 
 
-## Running Automated Version of Image
+### Running Automated Version of Image
 
 Type the command "docker run -v '/$$(pwd)/final_report':/project/final_report project_image" to manually build the Docker container and have the report built be mounted to your local system.
 
