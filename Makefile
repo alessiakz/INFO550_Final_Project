@@ -25,11 +25,10 @@ install:
 	
 #DOCKER-ASSOCIATED RULES (run on local)
 
-PROJECTFILES = final_project_covid.Rmd code/01_table.R code/02_chart.R code/03_render.R code Makefile
-RENVFILES = renv.lock renv/activate.R renv/settings.dcf
+PROJECTFILES = final_project_covid.html Makefile
 
 #rule to build image
-project_image: Dockerfile $(PROJECTFILES) $(RENVFILES)
+project_image: Dockerfile $(PROJECTFILES)
 	docker build -t project_image .
 	touch $@
 

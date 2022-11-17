@@ -18,3 +18,21 @@ To generate the final report, either run the 03_render.R code from RStudio, or t
 * 01_table_1.R generates the table1 seen in the final report
 * 02_chart.R generates the bar chart
 * 03_render.R will render the final report
+
+## Docker Capabilities
+
+This project is set-up to work in a docker container. The following instructions will explain how to build the image and run the container.
+
+The image is hosted on DockerHub at https://hub.docker.com/repository/docker/alessiakz/final_project_image. 
+
+### Building Docker Image
+
+Type the command "docker build -t project_image ." to manually build the Docker image.
+You can also type the command "make project_image" to build the Docker image through the Makefile. 
+
+## Running Automated Version of Image
+
+Type the command "docker run -v '/$$(pwd)/final_report':/project/final_report project_image" to manually build the Docker container and have the report built be mounted to your local system.
+
+You can also type the command "make final_project/final_project_covid.html" to build the report in the Docker container and mounted to your local system. 
+
