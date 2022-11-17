@@ -1,3 +1,5 @@
+#REPORT-ASSOCIATED RULES (run in container)
+
 final_project_covid.html: code/03_render.R final_project_covid.Rmd descriptive_analysis
 	Rscript code/03_render.R
 
@@ -20,3 +22,18 @@ clean:
 .PHONY: install
 install:
 	Rscript -e "renv::restore()"
+	
+#DOCKER-ASSOCIATED RULES (run on local)
+
+PROJECTFILES = final_project_covid.Rmd code/01_table.R code/02_chart.R code/03_render.R code Makefile
+RENVFILES = renv.lock renv/activate.R renv/settings.dcf
+
+#rule to build image
+project_image: Dockerfile $(PROJECTFILES) $(RENVFILES)
+	docker build -t project_image .
+	touch $@
+
+#rule to build the report automatically in our coontainer
+final_project/report.html: project_image
+	docker run -v "/$$(pwd)/final_project":/project/final_report project_image
+
