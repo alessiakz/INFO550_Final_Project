@@ -27,12 +27,17 @@ The image is hosted on DockerHub at https://hub.docker.com/repository/docker/ale
 
 ### Building Docker Image
 
-Type the command "docker build -t project_image ." to manually build the Docker image.
-You can also type the command "make project_image" to build the Docker image through the Makefile. 
+Type the command "docker build -t alessiakz/final_project_image ." to manually build the Docker image.
+You can also type the command "make project_image" to build the Docker image through the Makefile command. 
+
+### Pulling Docker Image
+
+Type the command "docker pull alessiakz/final_project_image" to pull the Docker image from Docker Hub.
+You can also type the command "make pull_image" to pull the Docker image through the Makefile command.
 
 ### Running Automated Version of Image
 
-Type the command "docker run -v '/$$(pwd)/final_report':/project/final_report project_image" to manually build the Docker container and have the report built be mounted to your local system.
+Type the command "docker run -v 'docker run -v "//$$(pwd)"/final_report:/project/final_report alessiakz/final_project_image" to manually build the Docker container and have the report built be mounted to your local system.
 
-You can also type the command "make final_project/final_project_covid.html" to build the report in the Docker container and mounted to your local system. 
+You can also type the command "make final_report" to build the report in the Docker container and mounted to your local system. 
 
