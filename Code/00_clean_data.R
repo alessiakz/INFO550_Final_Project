@@ -11,5 +11,4 @@ data_clean <- data_raw %>%
 
 saveRDS(
   data_clean,
-  file = here::here("output/data_clean.rds")
-)
+  file = here::here("output/data_clean.rds"))

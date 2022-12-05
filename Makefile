@@ -1,6 +1,6 @@
 #REPORT-ASSOCIATED RULES (run in container)
 
-final_project_covid.html: code/03_render.R final_project_covid.Rmd descriptive_analysis
+final_project_covid.html: final_project_covid.Rmd code/03_render.R output/data_clean.rds output/table_1.rds output/barchart.png
 	Rscript code/03_render.R
 
 output/data_clean.rds: code/00_clean_data.R raw_data/owid-covid-data.csv
@@ -12,9 +12,6 @@ output/table_1.rds: code/01_table1.R output/data_clean.rds
 output/barchart.png: code/02_chart.R output/data_clean.rds
 	Rscript code/02_chart.R
 
-.PHONY: descriptive_analysis
-descriptive_analysis: output/table_1.rds output/barchart.png
-
 .PHONY: clean
 clean:
 	rm output/*.rds && rm output/*.png && rm *.html
@@ -25,14 +22,16 @@ install:
 	
 #DOCKER-ASSOCIATED RULES (run on local)
 
-PROJECTFILES = final_project_covid.html Makefile
-
 #rule to build image
-project_image: Dockerfile $(PROJECTFILES)
-	docker build -t project_image .
-	touch $@
+project_image: 
+	docker build -t alessiakz/final_project_image .
+	
+#rule to pull image
+pull_image:
+	docker pull alessiakz/final_project_image
 
 #rule to build the report automatically in our coontainer
-final_report/final_project_covid.html: project_image
-	docker run -v "/$$(pwd)/final_report":/project/final_report project_image
+.PHONY: final_report
+final_report: 
+	docker run -v "//$$(pwd)"/final_report:/project/final_report alessiakz/final_project_image
 
